@@ -18,7 +18,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => array(
-    "Authorization: Bearer 59970a8ac825ee9933e8175d15f3c094ebe557ecdcb951442e15cab10d669856",
+    "Authorization: Bearer 001da47e750e2a2d312e01381cda403f19eea42d52a9c5cff825cfe2980a365d",
     "Cache-Control: no-cache",
     "Connection: keep-alive",
     "Host: public-api.vitrue.com",
@@ -38,10 +38,12 @@ if ($err) {
   echo "cURL Error #:" . $err;
 } else {
   //Check this code give me 
-  $messagesArray = json_decode($response);
+  $messagesArray = json_decode($response, true);
 
-  foreach ($messagesArray as $key => $value) {
-    echo $value->messageId . ", " . $value->externalId . "<br>";
-  }
+  foreach ($messagesArray as $message => $messageId) {
+    echo $message.':' .$messageId; //. ", " . $message->externalId . 
+    echo "<br>";
+    //echo(count($messagesArray));
+}
   //echo $response;
 }
