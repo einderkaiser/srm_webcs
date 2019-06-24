@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2019 at 07:10 AM
+-- Generation Time: Jun 24, 2019 at 02:30 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -29,17 +29,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `srm_config` (
-  `ACCESS_TOKEN` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `REFRESH_TOKEN` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `NEXT_REFRESH` date DEFAULT NULL
+  `CLIENT_ID` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `CLIENT_SECRET` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `ACCESS_TOKEN` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `REFRESH_TOKEN` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `NEXT_REFRESH` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `srm_config`
 --
 
-INSERT INTO `srm_config` (`ACCESS_TOKEN`, `REFRESH_TOKEN`, `NEXT_REFRESH`) VALUES
-('7d4cbfde1d544b5cc9ed6cd4ab88876269f9c666e39e73db1588f8add591333e', '8c2ea69c7325ed463ba22ae68d87e0c7d64d2866c1fe83d32d33fc0696d2ec7e', NULL);
+INSERT INTO `srm_config` (`CLIENT_ID`, `CLIENT_SECRET`, `ACCESS_TOKEN`, `REFRESH_TOKEN`, `NEXT_REFRESH`) VALUES
+('d7352213c60829be595904d191ce4d291395501f371308062c69b59f3998ef37', '50d8ae34562a392c09f467b2dbf8258504249f73618138f05c9d18943036b7da', '9474314dccae6c563ed950ede76b108139ff592f42583b735e59897517ac68d5', 'e713a7278bb7401872ee608ab39eb67c1eab0595ef62de2e72bf4fc97f7a4ced', '12:50:00');
 
 -- --------------------------------------------------------
 
@@ -48,7 +50,7 @@ INSERT INTO `srm_config` (`ACCESS_TOKEN`, `REFRESH_TOKEN`, `NEXT_REFRESH`) VALUE
 --
 
 CREATE TABLE `srm_message` (
-  `message_Id` int(11) NOT NULL,
+  `message_Id` int(11) DEFAULT NULL,
   `unique_Id` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
   `external_Id` int(11) DEFAULT NULL,
@@ -77,6 +79,16 @@ CREATE TABLE `srm_message_attach` (
   `thumbnail_Url` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_Downloadable` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `srm_config`
+--
+ALTER TABLE `srm_config`
+  ADD PRIMARY KEY (`CLIENT_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
